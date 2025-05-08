@@ -28,18 +28,41 @@ namespace HelloWorld
       Console.WriteLine("\nOn your way you took " + numberOfSteps + " steps!\n\n");
 
       string[] routes = ["Park", "Forest", "City"];
-      Console.WriteLine("There are " + routes.Length + " routes that the cat let you choose from: \n");
-      for (int i = 0; i < routes.Length; i++)
+      menuChoices("There are " + routes.Length + " routes that the cat let you choose from: \n", routes);
+
+      int routeChoiceNumber = GetConvertedIntMenuInput("\nEnter the number of the route you choose: ", routes.Length);
+
+      string routeChoice = routes[routeChoiceNumber - 1];
+
+      Console.WriteLine("\nYou chose the " + routeChoice + ", and the cat is running off in that direction.");
+
+      string[] signs = [routeChoice + " Entrance", routeChoice + " Exit"];
+      string[] reversedSigns = new string[signs.Length];
+      int index = 0;
+
+      foreach (string sign in signs)
       {
-        Console.WriteLine(i + 1 + ") " + routes[i]);
+        reversedSigns[index] = reverseString(sign).ToUpper();
+        index++;
       }
 
-      int menuChoice = GetConvertedIntMenuInput("\nEnter the number of the route you choose: ", routes.Length);
+      menuChoices("\nAt the arrival to the " +
+      routeChoice + " you see two gates ahead. You will need to pass through one of the to get into the " +
+      routeChoice + ". There are old signs beside each of the gates that has become reversed by time:\n"
+      , reversedSigns);
 
+      int signChoiceNumber = GetConvertedIntMenuInput("\nEnter the number of the gate you choose to enter: ", signs.Length);
 
-
-      Console.WriteLine("\nYou chose the " + routes[menuChoice - 1] + ", and the cat is running off in that direction.");
-
+      if (signChoiceNumber == 1)
+      {
+        Console.WriteLine("\nYou chose the " + signs[signChoiceNumber - 1] + ", and the cat is greeting you with a meow and make stroke loop around your legs when you get in. Then you continue on the main path.");
+      }
+      else
+      {
+        Console.WriteLine("\nYou chose the " + signs[signChoiceNumber - 1] +
+        ", and the reversal of time throws you out and back in time to the point that you no longer have met the cat," +
+        " and you just continue on with you daily business. \n\n***GAME OVER***");
+      }
 
 
       Console.WriteLine("\n\nPress enter to exit...");
@@ -87,6 +110,24 @@ namespace HelloWorld
         }
       }
       return value;
+    }
+
+    private static void menuChoices(string prompt, string[] alternatives)
+    {
+      Console.WriteLine(prompt);
+      for (int i = 0; i < alternatives.Length; i++)
+      {
+        Console.WriteLine(i + 1 + ") " + alternatives[i]);
+      }
+    }
+
+    private static string reverseString(string initialString)
+    {
+      char[] initialStringCharArray = initialString.ToCharArray();
+      Array.Reverse(initialStringCharArray);
+      string reversedString = new string(initialStringCharArray);
+      return reversedString;
+
     }
   }
 
