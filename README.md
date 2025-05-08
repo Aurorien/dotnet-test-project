@@ -8,8 +8,6 @@ Click the button above to launch this application directly in your browser - no 
 
 ### How to Run in Codespaces
 Once the Codespace loads:
-
 The environment will automatically restore dependencies and make the run script executable.
-
 Run the application in the terminal with:
 ./run.sh
