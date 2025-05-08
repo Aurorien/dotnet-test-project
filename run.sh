@@ -4,4 +4,4 @@ echo "Building application..."
 dotnet build
 
 echo "Running application..."
-dotnet run --project ./ConsoleApp1.csproj
+dotnet run --project ./ConsoleApp1/ConsoleApp1.csproj

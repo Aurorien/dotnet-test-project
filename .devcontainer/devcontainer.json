@@ -5,7 +5,7 @@
     "ghcr.io/devcontainers/features/dotnet:1": {}
   },
   "forwardPorts": [],
-  "postCreateCommand": "dotnet restore",
+  "postCreateCommand": "dotnet restore && chmod +x run.sh",
   "customizations": {
     "vscode": {
       "extensions": [
