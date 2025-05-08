@@ -14,7 +14,7 @@ namespace HelloWorld
       string? userName = Console.ReadLine(); // username can be string or possibly null, Console.ReadLine() returns string generally
 
       Console.Clear();
-      Console.WriteLine("\n\n~~~~~ Welcome" + (string.IsNullOrEmpty(userName) ? "" : " " + userName) + " to Walkingtale with the cat! =^.^=  ~~~~~\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
+      Console.WriteLine("\n\n" + @"\~~~~~ Welcome" + (string.IsNullOrEmpty(userName) ? "" : " " + userName) + " to Walkingtale with the cat! =^.^=  ~~~~~/\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
       Console.WriteLine("Let us figure out you average walking speed...\n");
       double walkingDistance = GetConvertedDoubleInput("Enter a distance in kilometers that you have walked: ");
       double walkingTime = GetConvertedDoubleInput("Enter the time in minutes it took to walk that distance: ");
@@ -26,7 +26,7 @@ namespace HelloWorld
 
       double walkingStepWidth = GetConvertedDoubleInput("Enter how wide your walking step is in centimeter: ");
       double numberOfSteps = walkingDistance * 100000 / walkingStepWidth;
-      Console.WriteLine("\nOn your way you took " + numberOfSteps + " steps! Great work!\n\n");
+      Console.WriteLine("\nOn your way you took " + numberOfSteps + " steps! Great work! \\./\n\n");
 
       string[] routes = ["Park", "Forest", "City"];
       MenuChoices("There are " + routes.Length + " routes that the cat let you choose from: \n", routes);
@@ -72,9 +72,9 @@ namespace HelloWorld
       }
 
       string[] yesOrNoAnswerArray = ["Yes", "No"];
-      Console.WriteLine("\nIt leads up to a fountain and a big sign that says: \n\nKoi pond\n\nThe cat try to catch a fish but failed, got a wet paw and now want you help.");
+      Console.WriteLine("\nIt leads up to a fountain and a big sign that says: \n\n\"Koi pond\"\n\nThe cat try to catch a fish but failed, got a wet paw and now want you help.");
       MenuChoices("Will you help the cat to catch a fish?\n", ["Yes", "No"]);
-      int catchFishAnswerNumber = GetConvertedIntMenuInput("\nEnter a number for your answer:", yesOrNoAnswerArray.Length);
+      int catchFishAnswerNumber = GetConvertedIntMenuInput("\nEnter a number for your answer: ", yesOrNoAnswerArray.Length);
 
       if (catchFishAnswerNumber == 1)
       {
