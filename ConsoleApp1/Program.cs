@@ -55,18 +55,64 @@ namespace HelloWorld
 
       if (signChoiceNumber == 1)
       {
-        Console.WriteLine("\nYou chose the " + signs[signChoiceNumber - 1] + ", and the cat is greeting you with a meow and make stroke loop around your legs when you get in. Then you continue on the main path.");
+        Console.WriteLine("\nYou chose the " + signs[signChoiceNumber - 1] +
+        ", and the cat is greeting you with a meow and make stroke loop around your legs when you get in." +
+        " Then you continue on the main path.");
       }
       else
       {
         Console.WriteLine("\nYou chose the " + signs[signChoiceNumber - 1] +
         ", and the reversal of time throws you out and back in time to the point that you no longer have met the cat," +
         " and you just continue on with you daily business. \n\n***GAME OVER***");
+        Exit();
+      }
+
+      string[] yesOrNoAnswerArray = ["Yes", "No"];
+      Console.WriteLine("The main path leads up to a fountain and a big sign that says: \n\nKoi pond\n\n The cat try to catch a fish but failed, got a wet paw and now want you help. Will you help the cat to catch a fish?");
+      MenuChoices("Will you help the cat to catch a fish?", ["Yes", "No"]);
+      int catchFishAnswerNumber = GetConvertedIntMenuInput("Will you help the cat to catch a fish?", yesOrNoAnswerArray.Length);
+
+      if (catchFishAnswerNumber == 1)
+      {
+        Console.WriteLine("Let us try to catch fish!");
+        Fish fish1 = new Fish
+        {
+          Color = "red",
+          Temper = "shy",
+          Dificulty = "moderate"
+        };
+
+        Fish fish2 = new Fish
+        {
+          Color = "orange",
+          Temper = "angry",
+          Dificulty = "moderate"
+        };
+
+        Fish fish3 = new Fish
+        {
+          Color = "white",
+          Temper = "shy",
+          Dificulty = "hard"
+        };
+
+        Fish fish4 = new Fish
+        {
+          Color = "red",
+          Temper = "social",
+          Dificulty = "easy"
+        };
+
+      }
+      else
+      {
+        Console.WriteLine("The cat is disappointed and ignore you. There is one path to the right and one to the left, which one do you choose?");
       }
 
 
-      Console.WriteLine("\n\nPress enter to exit...");
-      Console.ReadLine();
+
+
+      Exit();
     }
     private static double GetConvertedDoubleInput(string prompt) // private utility method for class scoped clean refactoring, can be changed to public when it is needed outside of this class
     {
@@ -125,10 +171,23 @@ namespace HelloWorld
     {
       char[] initialStringCharArray = initialString.ToCharArray();
       Array.Reverse(initialStringCharArray);
-      string reversedString = new string(initialStringCharArray);
-      return reversedString;
+      return string.Concat(initialStringCharArray);
 
     }
+
+    private static void Exit()
+    {
+      Console.WriteLine("\n\nPress enter to exit...");
+      Console.ReadLine();
+    }
+  }
+
+  class Fish
+  {
+    public required string Color { get; set; }
+    public required string Temper { get; set; }
+    public required string Dificulty { get; set; }
+
   }
 
 
