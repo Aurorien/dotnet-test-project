@@ -10,8 +10,8 @@ namespace HelloWorld
       Console.Write("Please input you name: ");
       string? userName = Console.ReadLine(); // username can be string or possibly null, Console.ReadLine() returns string generally
 
-      Console.WriteLine("\n\nWelcome" + (string.IsNullOrEmpty(userName) ? "" : " " + userName) + "!\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
-      Console.WriteLine("Let figure out you average walking speed!\n");
+      Console.WriteLine("\n\n~~~~~ Welcome" + (string.IsNullOrEmpty(userName) ? "" : " " + userName) + " to Walkingtale with the cat! =^.^=  ~~~~~\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
+      Console.WriteLine("Let us figure out you average walking speed!\n");
 
 
 
@@ -19,10 +19,30 @@ namespace HelloWorld
       double walkingTime = GetConvertedDoubleInput("Enter the time in minutes it took to walk that distance: ");
       double averageWalkingSpeed = walkingDistance / (walkingTime / 60);
 
-      Console.WriteLine("\n\nYou average walking speed was " + averageWalkingSpeed + " km/h!\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
+      Console.WriteLine("\nYou average walking speed was " + averageWalkingSpeed + " km/h!\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
+
+      Console.WriteLine("Let us see how many steps that was!\n");
+
+      double walkingStepWidth = GetConvertedDoubleInput("Enter how wide your walking step is in centimeter: ");
+      double numberOfSteps = walkingDistance * 100000 / walkingStepWidth;
+      Console.WriteLine("\nOn your way you took " + numberOfSteps + " steps!\n\n");
+
+      string[] routes = ["Park", "Forest", "City"];
+      Console.WriteLine("There are " + routes.Length + " routes that the cat let you choose from: \n");
+      for (int i = 0; i < routes.Length; i++)
+      {
+        Console.WriteLine(i + 1 + ") " + routes[i]);
+      }
+
+      int menuChoice = GetConvertedIntMenuInput("\nEnter the number of the route you choose: ", routes.Length);
 
 
-      Console.WriteLine("Press enter to exit...");
+
+      Console.WriteLine("\nYou chose the " + routes[menuChoice - 1] + ", and the cat is running off in that direction.");
+
+
+
+      Console.WriteLine("\n\nPress enter to exit...");
       Console.ReadLine();
     }
     private static double GetConvertedDoubleInput(string prompt) // private utility method for class scoped clean refactoring, can be changed to public when it is needed outside of this class
@@ -32,16 +52,38 @@ namespace HelloWorld
       while (isNotValidInput)
       {
         Console.Write(prompt);
-        string? walkingDistanceInput = Console.ReadLine();
+        string? input = Console.ReadLine();
 
 
-        if (double.TryParse(walkingDistanceInput, out value)) // https://stackoverflow.com/questions/14304591/check-if-user-input-is-a-number, out value assigns value with the parsed double if the TryParse was successful
+        if (double.TryParse(input, out value)) // https://stackoverflow.com/questions/14304591/check-if-user-input-is-a-number, out value assigns value with the parsed double if the TryParse was successful
         {
           isNotValidInput = false;
         }
         else
         {
           Console.WriteLine("Invalid input. Enter a number or decimal.");
+        }
+      }
+      return value;
+    }
+
+    private static int GetConvertedIntMenuInput(string prompt, int menuLength)
+    {
+      int value = 1;
+      bool isNotValidInput = true;
+      while (isNotValidInput)
+      {
+        Console.Write(prompt);
+        string? input = Console.ReadLine();
+
+
+        if (int.TryParse(input, out value) && value > 0 && value <= menuLength)
+        {
+          isNotValidInput = false;
+        }
+        else
+        {
+          Console.WriteLine("Invalid input. Enter a number from 1 to " + menuLength + ".");
         }
       }
       return value;
