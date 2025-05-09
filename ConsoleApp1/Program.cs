@@ -78,7 +78,7 @@ namespace HelloWorld
 
       if (catchFishAnswerNumber == 1)
       {
-        Console.WriteLine("Let us try to catch fish!");
+        Console.WriteLine("\nLet us try to catch fish!");
 
         // different ways of creating new instances (objects) of class Fish
         // Fish fish1 = new Fish();
@@ -133,6 +133,17 @@ namespace HelloWorld
 
         string[] fishesColors = [.. fishesList.Select(fish => fish.Color)]; // using LINQ (Language Integrated Query) querying data in collection
 
+        MenuChoices("There are " + fishesColors.Length + " fishes in the pond to choose from. They have the colors: \n", fishesColors);
+        int fishChoiceNumber = GetConvertedIntMenuInput("\nEnter the number of the fish you want to interact with: ", fishesColors.Length);
+        Fish chosenFish = fishesList[fishChoiceNumber - 1];
+        Console.Clear();
+        Console.WriteLine("\nYou chose a " + chosenFish.Color + "fish, and you have to guess its name to make it come closer.");
+        Console.WriteLine($"There are some clues. The length of the name is {chosenFish.Name.Length} and starts with {chosenFish.Name.Substring(0, 1)} and ends with {chosenFish.Name[^1]}."); // using substring and string indexer
+
+        CompareInputStringValidation("Write the name here: ", chosenFish.Name);
+        Console.Clear();
+
+        Console.WriteLine($"You manage to figure it out. {chosenFish.Name} is carefully swimming up towards you and says \"{chosenFish.Sound}\".");
       }
       else
       {
