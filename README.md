@@ -9,5 +9,5 @@ Click the button above to launch the GitHub Codespace for this application!
 Once the Codespace loads:
 The environment will automatically restore dependencies and make the run script executable.
 
-Run the application in the Codespace terminal with:
+Run the application in the terminal with:
 ./run.sh
