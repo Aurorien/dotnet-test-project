@@ -196,12 +196,21 @@ namespace HelloWorld
     }
   }
 
-  public class Fish
+  abstract class Animal // blueprint base class with abstract properties that must be implemented in non-abstract derived classes
   {
+    public abstract string Color { get; set; }
+    public abstract string Temper { get; set; }
+    public abstract string Difficulty { get; set; }
 
-    public string Color { get; set; }
-    public string Temper { get; set; }
-    public string Difficulty { get; set; }
+    public abstract string Sound { get; set; }
+
+  }
+
+  class Fish : Animal // non-abstract derived class that is implementing base class abstract properties by override
+  {
+    public override string Color { get; set; }
+    public override string Temper { get; set; }
+    public override string Difficulty { get; set; }
 
     public Fish() // constructor with default values
     {
@@ -216,7 +225,7 @@ namespace HelloWorld
       Temper = temper;
       Difficulty = difficulty;
     }
-
+    public override string Sound { get; set; } = "blub";
 
   }
 
