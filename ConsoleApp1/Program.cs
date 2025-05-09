@@ -131,11 +131,7 @@ namespace HelloWorld
           },
         ];
 
-        Console.WriteLine(fish1.Color);
-        Console.WriteLine(fish2.Color);
-        Console.WriteLine(fish3.Color);
-        Console.WriteLine(fish4.Color);
-
+        string[] fishesColors = [.. fishesList.Select(fish => fish.Color)]; // using LINQ (Language Integrated Query) querying data in collection
 
       }
       else
