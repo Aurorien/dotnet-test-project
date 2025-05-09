@@ -81,23 +81,55 @@ namespace HelloWorld
         Console.WriteLine("Let us try to catch fish!");
 
         // different ways of creating new instances (objects) of class Fish
-        Fish fish1 = new Fish();
+        // Fish fish1 = new Fish();
 
-        Fish fish2 = new Fish
-        {
-          Color = "orange",
-          Temper = "angry",
-          Difficulty = "moderate"
-        };
+        // Fish fish2 = new Fish
+        // {
+        //   Name = "Ebe",
+        //   Color = "orange",
+        //   Temper = "angry",
+        //   Difficulty = "moderate"
+        // };
 
-        Fish fish3 = new Fish("white", "shy", "hard");
+        // Fish fish3 = new("Sandy", "white", "shy", "hard");
 
-        Fish fish4 = new()
-        {
-          Color = "red",
-          Temper = "social",
-          Difficulty = "easy"
-        };
+        // Fish fish4 = new()
+        // {
+        //   Name = "Obo",
+        //   Color = "red",
+        //   Temper = "social",
+        //   Difficulty = "easy"
+        // };
+
+        // List<Fish> fishesList = [fish1, fish2, fish3, fish4]; // adding the fish objects to a List
+
+
+        List<Fish> fishesList = [  // collection initialization
+          new Fish {
+            Name = "Fishe",
+            Color = "red",
+            Temper = "shy",
+            Difficulty = "moderate",
+          },
+          new Fish {
+            Name = "Ebe",
+            Color = "orange",
+            Temper = "angry",
+            Difficulty = "moderate"
+          },
+          new Fish {
+            Name = "Sandy",
+            Color = "white",
+            Temper = "shy",
+            Difficulty = "hard"
+          },
+          new Fish {
+            Name = "Obo",
+            Color = "red",
+            Temper = "social",
+            Difficulty = "easy"
+          },
+        ];
 
         Console.WriteLine(fish1.Color);
         Console.WriteLine(fish2.Color);
@@ -198,6 +230,7 @@ namespace HelloWorld
 
   abstract class Animal // blueprint base class with abstract properties that must be implemented in non-abstract derived classes
   {
+    public abstract string Name { get; set; }
     public abstract string Color { get; set; }
     public abstract string Temper { get; set; }
     public abstract string Difficulty { get; set; }
@@ -208,19 +241,22 @@ namespace HelloWorld
 
   class Fish : Animal // non-abstract derived class that is implementing base class abstract properties by override
   {
+    public override string Name { get; set; }
     public override string Color { get; set; }
     public override string Temper { get; set; }
     public override string Difficulty { get; set; }
 
     public Fish() // constructor with default values
     {
+      Name = "Fishe";
       Color = "red";
       Temper = "shy";
       Difficulty = "moderate";
     }
 
-    public Fish(string color, string temper, string difficulty) // overload constructor with parameter values
+    public Fish(string name, string color, string temper, string difficulty) // overload constructor with parameter values
     {
+      Name = name;
       Color = color;
       Temper = temper;
       Difficulty = difficulty;
