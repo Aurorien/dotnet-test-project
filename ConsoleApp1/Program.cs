@@ -137,8 +137,8 @@ namespace ConsoleApp1
         int fishChoiceNumber = GetConvertedIntMenuInput("\nEnter the number of the fish you want to interact with: ", fishesColors.Length);
         Fish chosenFish = fishesList[fishChoiceNumber - 1];
         Console.Clear();
-        Console.WriteLine("\nYou chose a " + chosenFish.Color + "fish, and you have to guess its name to make it come closer.");
-        Console.WriteLine($"There are some clues. The length of the name is {chosenFish.Name.Length} and starts with {chosenFish.Name.Substring(0, 1)} and ends with {chosenFish.Name[^1]}."); // using substring and string indexer
+        Console.WriteLine("\nYou chose a " + chosenFish.Color + " fish, and you have to guess its name to make it come closer.");
+        Console.WriteLine($"There are some clues. The length of the name is {chosenFish.Name.Length} letters, starts with {chosenFish.Name.Substring(0, 1)} and ends with {chosenFish.Name[^1]}."); // using substring and string indexer
 
         CompareInputStringValidation("Write the name here: ", chosenFish.Name);
         Console.Clear();
