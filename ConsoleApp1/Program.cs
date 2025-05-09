@@ -255,6 +255,7 @@ namespace ConsoleApp1
     {
       Console.WriteLine("\n\nPress enter to exit...");
       Console.ReadLine();
+      Console.Clear();
       Environment.Exit(0); // https://stackoverflow.com/questions/12977924/how-do-i-properly-exit-a-c-sharp-application
     }
   }
