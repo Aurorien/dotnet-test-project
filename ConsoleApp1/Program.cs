@@ -186,6 +186,26 @@ namespace HelloWorld
       return value;
     }
 
+    private static void CompareInputStringValidation(string prompt, string rightValue)
+    {
+      bool isNotValidInput = true;
+      while (isNotValidInput)
+      {
+        Console.Write(prompt);
+        string? input = Console.ReadLine();
+
+
+        if (input == rightValue)
+        {
+          isNotValidInput = false;
+        }
+        else
+        {
+          Console.WriteLine("That is not the name. Try again.");
+        }
+      }
+    }
+
     private static void MenuChoices(string prompt, string[] alternatives)
     {
       Console.WriteLine(prompt);
