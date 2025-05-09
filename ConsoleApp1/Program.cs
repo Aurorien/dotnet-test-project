@@ -144,6 +144,10 @@ namespace HelloWorld
         Console.Clear();
 
         Console.WriteLine($"You manage to figure it out. {chosenFish.Name} is carefully swimming up towards you and says \"{chosenFish.Sound}\".");
+        chosenFish.Sound = "splash";
+        Console.WriteLine($"{chosenFish.Name} comes closer and with a *{chosenFish.Sound}*, {chosenFish.Name} jumps up in the air to see you better.");
+
+        Console.WriteLine("\n\nThere ends this chapter. Will be continued...");
       }
       else
       {
