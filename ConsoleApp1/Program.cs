@@ -1,7 +1,7 @@
 ﻿
 using System.Security.AccessControl;
 
-namespace HelloWorld
+namespace ConsoleApp1
 {
   class Program // can technically be called anything but Program is best practice
   {
