@@ -1,5 +1,5 @@
 # Walking tale with the cat
-Console game and project in C# for learning and testing.
+Console game and project in C#.
 
 ## Run the application
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/Aurorien/special-doodle-xgqp65qw75qh6v9)
