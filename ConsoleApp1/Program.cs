@@ -1,4 +1,5 @@
 ﻿
+using System.Globalization;
 using System.Security.AccessControl;
 
 namespace ConsoleApp1
@@ -9,30 +10,31 @@ namespace ConsoleApp1
     {
       Console.Clear();
       Console.WriteLine("\nHello!\n");
-
       Console.Write("Please input you name: ");
       string? userName = Console.ReadLine(); // username can be string or possibly null, Console.ReadLine() returns string generally
 
       Console.Clear();
       Console.WriteLine("\n\n" + @"\~~~~~ Welcome" + (string.IsNullOrEmpty(userName) ? "" : " " + userName) + " to Walkingtale with the cat! =^.^=  ~~~~~/\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
-      Console.WriteLine("Let us figure out you average walking speed...\n");
-      double walkingDistance = GetConvertedDoubleInput("Enter a distance in kilometers that you have walked: ");
-      double walkingTime = GetConvertedDoubleInput("Enter the time in minutes it took to walk that distance: ");
-      double averageWalkingSpeed = walkingDistance / (walkingTime / 60);
 
-      Console.WriteLine("\nYou average walking speed was " + averageWalkingSpeed + " km/h!\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
+      Console.WriteLine("Let us figure out you average walking speed...\n");
+      double walkingDistance = GetConvertedDoubleInput("Enter the number of kilometers of a distance that you have walked: ");
+      double walkingTime = GetConvertedDoubleInput("Enter the number of minutes it took to walk that distance: ");
+      double averageWalkingSpeed = walkingDistance / (walkingTime / 60);
+      int roundedSpeed = (int)Math.Round(averageWalkingSpeed, MidpointRounding.AwayFromZero); // https://learn.microsoft.com/en-us/dotnet/api/system.midpointrounding?view=net-9.0
+      string roundedSpeedFormatted = roundedSpeed.ToString("N0", CultureInfo.GetCultureInfo("sv")); // https://stackoverflow.com/questions/47323838/convert-number-into-culture-specific, https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings
+      Console.WriteLine("\nYou average walking speed was " + roundedSpeedFormatted + " km/h!\n\n"); //https://stackoverflow.com/questions/26338571/checking-console-readline-null
 
       Console.WriteLine("Let us see how many steps that was...\n");
-
       double walkingStepWidth = GetConvertedDoubleInput("Enter how wide your walking step is in centimeter: ");
       double numberOfSteps = walkingDistance * 100000 / walkingStepWidth;
-      Console.WriteLine("\nOn your way you took " + numberOfSteps + " steps! Great work! \\./\n\n");
+      int roundedSteps = (int)Math.Round(numberOfSteps, MidpointRounding.ToZero);
+      string roundedStepsFormatted = roundedSteps.ToString("N0", CultureInfo.GetCultureInfo("sv"));
+
+      Console.WriteLine("\nOn your way you took " + roundedStepsFormatted + " steps! Great work! \\./\n\n");
 
       string[] routes = ["Park", "Forest", "City"];
       MenuChoices("There are " + routes.Length + " routes that the cat let you choose from: \n", routes);
-
       int routeChoiceNumber = GetConvertedIntMenuInput("\nEnter the number of the route you choose: ", routes.Length);
-
       string routeChoice = routes[routeChoiceNumber - 1];
 
       Console.Clear();
@@ -49,7 +51,7 @@ namespace ConsoleApp1
       }
 
       MenuChoices("\nAt the arrival to the " +
-      routeChoice + " you see two gates ahead. You will need to pass through one of the to get into the " +
+      routeChoice + " you see two gates ahead. You will need to pass through one of the them to get into the " +
       routeChoice + ". There are old signs beside each of the gates that has become reversed by time:\n"
       , reversedSigns);
 
@@ -66,13 +68,13 @@ namespace ConsoleApp1
       {
         Console.Clear();
         Console.WriteLine("\nYou chose the " + signs[signChoiceNumber - 1] +
-        ", and the reversal of time throws you out and back in time to the point that you no longer have met the cat," +
-        " and you just continue on with you daily business.");
+        ". The reversal of time throws you out and back in time to the point where you no longer have met the cat. " +
+        "You just continue on with you daily business.");
         GameOver();
       }
 
       string[] yesOrNoAnswerArray = ["Yes", "No"];
-      Console.WriteLine("\nIt leads up to a fountain and a big sign that says: \n\n\"Koi pond\"\n\nThe cat try to catch a fish but failed, got a wet paw and now want you help.");
+      Console.WriteLine("\nIt leads up to a fountain and a big sign that says: \n\n\"Koi pond\"\n\nThe cat try to catch a fish but failed, got a wet paw and now want your help.");
       MenuChoices("Will you help the cat to catch a fish?\n", ["Yes", "No"]);
       int catchFishAnswerNumber = GetConvertedIntMenuInput("\nEnter a number for your answer: ", yesOrNoAnswerArray.Length);
 
@@ -136,13 +138,13 @@ namespace ConsoleApp1
         MenuChoices("There are " + fishesColors.Length + " fishes in the pond to choose from. They have the colors: \n", fishesColors);
         int fishChoiceNumber = GetConvertedIntMenuInput("\nEnter the number of the fish you want to interact with: ", fishesColors.Length);
         Fish chosenFish = fishesList[fishChoiceNumber - 1];
+
         Console.Clear();
         Console.WriteLine("\nYou chose a " + chosenFish.Color + " fish, and you have to guess its name to make it come closer.");
-        Console.WriteLine($"There are some clues. The length of the name is {chosenFish.Name.Length} letters, starts with {chosenFish.Name.Substring(0, 1)} and ends with {chosenFish.Name[^1]}."); // using substring and string indexer
-
+        Console.WriteLine($"There are some clues. The length of the name is {chosenFish.Name.Length} letters, starts with {chosenFish.Name.Substring(0, 1)} and ends with {chosenFish.Name[1..^0]}."); // using substring and string indexer, https://stackoverflow.com/questions/5203052/how-can-get-a-substring-from-a-string-in-c
         CompareInputStringValidation("Write the name here: ", chosenFish.Name);
-        Console.Clear();
 
+        Console.Clear();
         Console.WriteLine($"You manage to figure it out. {chosenFish.Name} is carefully swimming up towards you and says \"{chosenFish.Sound}\".");
         chosenFish.Sound = "splash";
         Console.WriteLine($"{chosenFish.Name} comes closer and with a *{chosenFish.Sound}*, {chosenFish.Name} jumps up in the air to see you better.");
