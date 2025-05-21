@@ -11,3 +11,7 @@ The environment will automatically restore dependencies and make the run script 
 
 Run the application in the terminal with:
 ./run.sh
+
+-------------------------------------------------
+
+Running the application on a computer requires that .NET runtime is installed in the computer system.
